@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "514421412120",
+    "project_id": "biedaalt-72443",
+    "storage_bucket": "biedaalt-72443.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:514421412120:android:a56e3f4d2628a5069d0e6d",
+        "android_client_info": {
+          "package_name": "com.example.bie_daalt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "514421412120-5tu94070rm7f5o6m4ne9322ftjjd14d6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bie_daalt",
+            "certificate_hash": "cb11505dc996a644857df3d2d2bfa97a90746fac"
+          }
+        },
+        {
+          "client_id": "514421412120-tdle213npqpj3e3ftso4ue8g56agn43q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqOVsb0Dbzpk_b7ZZEU2aiiY9rpQNRR_o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "514421412120-tdle213npqpj3e3ftso4ue8g56agn43q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
