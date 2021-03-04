@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
+import io.paperdb.Paper;
+
 public class HomeActivity extends AppCompatActivity {
     Button logout_btn;
     @Override
@@ -17,6 +19,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void lel() {
+        Paper.book().destroy();
         this.finish();
     }
 }

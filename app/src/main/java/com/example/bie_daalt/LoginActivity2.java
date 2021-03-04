@@ -8,16 +8,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.bie_daalt.Model.Users;
+import com.example.bie_daalt.Prevalent.Prevalent;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.rey.material.widget.CheckBox;
+
+import io.paperdb.Paper;
 
 public class LoginActivity2 extends AppCompatActivity {
 
@@ -35,7 +38,10 @@ public class LoginActivity2 extends AppCompatActivity {
         inputpassword = (EditText) findViewById(R.id.login_password_input);
         loadingbar = new ProgressDialog(this);
         loginbutton = (Button) findViewById(R.id.login_towch);
+        rememberme = (com.rey.material.widget.CheckBox) findViewById(R.id.remember_me_chkb);
+        Paper.init(this);
         loginbutton.setOnClickListener(v ->loginuser() );
+
     }
 
     private void loginuser(){
@@ -58,6 +64,10 @@ public class LoginActivity2 extends AppCompatActivity {
     }
 
     private void Allow_access_to_account(String phone, String password) {
+        if (rememberme.isChecked()){
+            Paper.book().write(Prevalent.Userphonekey,phone);
+            Paper.book().write(Prevalent.Userpasswordkey,password);
+        }
         final DatabaseReference RootRef;
         RootRef = FirebaseDatabase.getInstance().getReference();
 
