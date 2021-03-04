@@ -7,8 +7,10 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bie_daalt.Model.Users;
@@ -29,6 +31,7 @@ public class LoginActivity2 extends AppCompatActivity {
     private ProgressDialog loadingbar;
     private String parentdbname="Users";
     private CheckBox rememberme;
+    private TextView Adminlink, Notadminlink;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,10 +42,31 @@ public class LoginActivity2 extends AppCompatActivity {
         loadingbar = new ProgressDialog(this);
         loginbutton = (Button) findViewById(R.id.login_towch);
         rememberme = (com.rey.material.widget.CheckBox) findViewById(R.id.remember_me_chkb);
+        Adminlink = (TextView) findViewById(R.id.admin_panel_link);
+        Notadminlink = (TextView) findViewById(R.id.not_admin_panel_link);
+        Adminlink.setOnClickListener(v ->adminclick());
+        Notadminlink.setOnClickListener(v -> notadminclick());
+        Notadminlink.setVisibility(View.INVISIBLE);
         Paper.init(this);
         loginbutton.setOnClickListener(v ->loginuser() );
 
+
     }
+
+    private void notadminclick() {
+        loginbutton.setText("Login");
+        Adminlink.setVisibility(View.VISIBLE);
+        Notadminlink.setVisibility(View.INVISIBLE);
+        parentdbname = "Users";
+    }
+
+    private void adminclick() {
+        loginbutton.setText("Login Admin");
+        Adminlink.setVisibility(View.INVISIBLE);
+        Notadminlink.setVisibility(View.VISIBLE);
+        parentdbname = "Admins";
+    }
+
 
     private void loginuser(){
         String phone = inputphonenumber.getText().toString();
@@ -58,7 +82,6 @@ public class LoginActivity2 extends AppCompatActivity {
             loadingbar.setMessage("Please wait,while we are checking the credentials");
             loadingbar.setCanceledOnTouchOutside(false);
             loadingbar.show();
-
             Allow_access_to_account(phone,password);
         }
     }
@@ -78,10 +101,22 @@ public class LoginActivity2 extends AppCompatActivity {
                     Users usersdata = dataSnapshot.child(parentdbname).child(phone).getValue(Users.class);
                     if(usersdata.getPhone().equals(phone)){
                         if(usersdata.getPassword().equals(password)){
-                            Toast.makeText(LoginActivity2.this, "logged in Successfully...", Toast.LENGTH_SHORT).show();
-                            loadingbar.dismiss();
-                            Intent intent = new Intent(LoginActivity2.this,HomeActivity.class);
-                            startActivity(intent);
+                            if(parentdbname.equals("Admins")){
+                                Toast.makeText(LoginActivity2.this, "Welcome Admin, you logged in Successfully...", Toast.LENGTH_SHORT).show();
+                                loadingbar.dismiss();
+                                Intent intent = new Intent(LoginActivity2.this,adminaddnewproductactivity.class);
+                                startActivity(intent);
+                            }
+                            if(parentdbname.equals("Users")){
+                                Toast.makeText(LoginActivity2.this, "logged in Successfully...", Toast.LENGTH_SHORT).show();
+                                loadingbar.dismiss();
+                                Intent intent = new Intent(LoginActivity2.this,HomeActivity.class);
+                                startActivity(intent);
+                            }
+//                            Toast.makeText(LoginActivity2.this, "logged in Successfully...", Toast.LENGTH_SHORT).show();
+//                            loadingbar.dismiss();
+//                            Intent intent = new Intent(LoginActivity2.this,HomeActivity.class);
+//                            startActivity(intent);
                         }
                         else{
                             loadingbar.dismiss();
