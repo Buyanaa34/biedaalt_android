@@ -36,7 +36,6 @@ public class LoginActivity2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login2);
-
         inputphonenumber = (EditText) findViewById(R.id.login_phone_number_input);
         inputpassword = (EditText) findViewById(R.id.login_password_input);
         loadingbar = new ProgressDialog(this);
@@ -49,8 +48,6 @@ public class LoginActivity2 extends AppCompatActivity {
         Notadminlink.setVisibility(View.INVISIBLE);
         Paper.init(this);
         loginbutton.setOnClickListener(v ->loginuser() );
-
-
     }
 
     private void notadminclick() {
@@ -104,13 +101,14 @@ public class LoginActivity2 extends AppCompatActivity {
                             if(parentdbname.equals("Admins")){
                                 Toast.makeText(LoginActivity2.this, "Welcome Admin, you logged in Successfully...", Toast.LENGTH_SHORT).show();
                                 loadingbar.dismiss();
-                                Intent intent = new Intent(LoginActivity2.this,adminaddnewproductactivity.class);
+                                Intent intent = new Intent(LoginActivity2.this, AdminCategoryActivity.class);
                                 startActivity(intent);
                             }
                             if(parentdbname.equals("Users")){
                                 Toast.makeText(LoginActivity2.this, "logged in Successfully...", Toast.LENGTH_SHORT).show();
                                 loadingbar.dismiss();
-                                Intent intent = new Intent(LoginActivity2.this,HomeActivity.class);
+                                Intent intent = new Intent(LoginActivity2.this, HomeActivity.class);
+                                Prevalent.current_onlineUser = usersdata;
                                 startActivity(intent);
                             }
 //                            Toast.makeText(LoginActivity2.this, "logged in Successfully...", Toast.LENGTH_SHORT).show();
