@@ -60,6 +60,7 @@ import io.paperdb.Paper;
                              Toast.makeText(MainActivity.this, "logged in Successfully...", Toast.LENGTH_SHORT).show();
                              loadingbar.dismiss();
                              Intent intent = new Intent(MainActivity.this,HomeActivity.class);
+                             Prevalent.current_onlineUser= usersdata;
                              startActivity(intent);
                          }
                          else{
