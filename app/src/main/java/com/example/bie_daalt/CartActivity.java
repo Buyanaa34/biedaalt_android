@@ -39,7 +39,7 @@ public class CartActivity extends AppCompatActivity
     private Button NextProcessBtn;
     private TextView txtTotalAmount, txtMsg1;
 
-    private int overTotalPrice = 0;
+    private float overTotalPrice = 0;
 
 
 
